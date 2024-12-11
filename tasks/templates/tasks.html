@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .task {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .task p {
+            margin: 5px 0;
+        }
+        .task a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .task a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tasks:</h1>
+        <form method="POST" action="/">
+            {% csrf_token %}
+            {{TaskForm.title}}
+            <input class="btn" type="submit" value="Create Task">
+        </form>
+        {% for task in tasks %}
+            <div class="task">
+                <p>{{task}}</p>
+                {% if task.completed %}
+                    <p>Task completed: Yes</p>
+                {% else %}
+                    <p>Task completed: No</p>
+                {% endif %}
+                <a href="{% url 'update-task' task.id %}">Update</a>
+                <a href="{% url 'delete-task' task.id %}">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
