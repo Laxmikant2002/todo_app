@@ -21,7 +21,7 @@ This is a simple Todo application built with Django.
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/django-todo-app.git
+   git clone git@github.com:Laxmikant2002/todo_app.git
    cd django-todo-app
    
 2. Here's a basic `README.md` for your Django todo app:
